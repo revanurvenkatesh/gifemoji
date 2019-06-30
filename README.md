@@ -7,7 +7,7 @@ install aws cli
 configure aws 
 
 `aws configure`
-set accesskey to: `AKIAIGBKSRVBSQQ7FJ5Q`
-set secretkey to: `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`
-set region to   : `us-west-2`
-set fileformat  : `JSON`
+set accesskey to: `AKIAIGBKSRVBSQQ7FJ5Q`  
+set secretkey to: `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`  
+set region to   : `us-west-2`  
+set fileformat  : `JSON`  
