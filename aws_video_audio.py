@@ -4,12 +4,6 @@ import boto3
 import json
 
 client = boto3.client('s3')
-resource = boto3.resource('s3')
-OUTPUT_BUCKET = resource.Bucket('transcribe-output-meme')
-INPUT_BUCKET = resource.Bucket('meme-audio')
-
-transcribe = boto3.client('transcribe')
-job_uri = "s3://meme-audio/"
 
 def upload_to_bucket(filename):
     client.upload_file(filename, 'meme-audio', filename)
@@ -22,9 +16,10 @@ def read_transcribe_output(job_name):
     return transcript
 
 def transcribe_job(file_name):
+    transcribe = boto3.client('transcribe')
     transcribe.start_transcription_job(
     TranscriptionJobName=file_name,
-    Media={'MediaFileUri': job_uri + file_name},
+    Media={'MediaFileUri': "s3://meme-audio/" + file_name},
     MediaFormat='wav',
     LanguageCode='en-US',
     OutputBucketName='transcribe-output-meme'
@@ -38,7 +33,7 @@ def transcribe_job(file_name):
     transcript = read_transcribe_output(file_name)
     return transcript
 
-file_name = 'voice_hello.wav'
+file_name = 'taylor.wav'
 upload_to_bucket(file_name)
 transcript = transcribe_job(file_name)
 print(transcript)
