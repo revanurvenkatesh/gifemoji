@@ -28,12 +28,15 @@ def transcribe_job(file_name):
         status = transcribe.get_transcription_job(TranscriptionJobName=file_name)
         if status['TranscriptionJob']['TranscriptionJobStatus'] in ['COMPLETED', 'FAILED']:
             break
-        print("Not ready yet...")
+        print("Transcribing...")
         time.sleep(5)
     transcript = read_transcribe_output(file_name)
     return transcript
 
-file_name = 'taylor.wav'
+file_name = 'great.wav'
 upload_to_bucket(file_name)
 transcript = transcribe_job(file_name)
+nb = len(transcript)
+print('*' * nb)
 print(transcript)
+print('*' * nb)
