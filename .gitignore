@@ -1,0 +1,6 @@
+bin/
+lib/
+include/
+pyvenv.cfg
+pip-selfcheck.json
+.vscode/
